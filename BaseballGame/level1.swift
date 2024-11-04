@@ -19,7 +19,17 @@ class BaseballGameLv1 {
     func makeAnswer(from:Int, to:Int ) -> String {
         var randomNumber:String = ""
         for _ in 1...3 {
-            randomNumber += String(Int.random(in: from...to))
+            var isUnique:Bool = false
+            
+            while !isUnique {
+                var newNumber:String = String(Int.random(in: from...to))
+                guard randomNumber.contains(newNumber) == false else {
+                    continue
+                }
+                randomNumber += newNumber
+                isUnique = true
+            }
+
         }
         return randomNumber
     }
