@@ -22,7 +22,7 @@ class BaseballGameLv1 {
             var isUnique:Bool = false
             
             while !isUnique {
-                var newNumber:String = String(Int.random(in: from...to))
+                let newNumber:String = String(Int.random(in: from...to))
                 guard randomNumber.contains(newNumber) == false else {
                     continue
                 }

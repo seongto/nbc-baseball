@@ -1,11 +1,11 @@
 //
-//  level2.swift
+//  level3.swift
 //  BaseballGame
 //  -
 //
 
 
-class BaseballGameLv2 {
+class BaseballGameLv3 {
     var answer: [String]
     var isCorrectAnswer: Bool
     
@@ -31,9 +31,13 @@ class BaseballGameLv2 {
     /// 랜덤 정답을 만드는 메소드
     /// - Returns: 만들어진 랜덤 정답( String의 배열 )을 반환
     func makeAnswer() -> [String] {
-        // 정답의 각 숫자는 고유성을 가져야하므로, 고유한 숫자의 배열로부터 하나씩 추출하는 방식으로 진행. 코드가 매우 간결해짐.
-        var numberArray: [String] = ["1", "2", "3", "4", "5", "6", "7", "8", "9"].shuffled()
+        // 정답의 각 숫자는 고유성을 가져야하므로, 고유한 숫자의 배열로부터 하나씩 추출하는 방식으로 진행. 코드가 매우 간결해짐. lv3에서 0 추가.
+        var numberArray: [String] = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"].shuffled()
         
+        // 첫 숫자는 0이어선 안되므로 이를 검증.
+        while numberArray[0] == "0" {
+            numberArray = numberArray.shuffled()
+        }
         
         /*
         // 레거시 코드 : 반복문으로 위 배열에서 하나씩 뽑아 쓰는 방식.
@@ -116,17 +120,10 @@ class BaseballGameLv2 {
             print("3자리의 숫자만 입력 가능합니다.\n")
             return false
         }
-      
-        // 숫자에 0이 포함되어 있는지 확인
-        let inputArr: [String] = input.map { String($0) }
-        guard !inputArr.contains("0") else {
-            print("0은 입력할 수 없습니다.\n")
-            return false
-        }
         
         // 숫자에 중복이 있는지 체크
-        let inputSet: Set<String> = Set(inputArr)
-        guard inputSet.count == input.count else {
+        let inputTest: Set<String> = Set(input.map { String($0) })
+        guard inputTest.count == input.count else {
             print("동일한 숫자는 반복하여 사용할 수 없습니다.\n")
             return false
         }

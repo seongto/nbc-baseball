@@ -13,5 +13,10 @@ print("started")
 //gameLv1.printResult()
 
 /// level 2 game 실행
-let gameLv2 = BaseballGameLv2()
-gameLv2.start()
+//let gameLv2 = BaseballGameLv2()
+//gameLv2.start()
+
+/// level 3 game 실행
+let gameLv3 = BaseballGameLv3()
+gameLv3.start()
+
