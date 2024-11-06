@@ -11,7 +11,7 @@ class NewGame {
     var recordName: String // 게임 종료 후 기록을 남길 때 이니셜 남기기
     var answer: [String]
     var isCorrectAnswer: Bool
-    var playHistories: [ PlayHistory ]
+    var playHistories: [ PlayHistory ] // 각 게임의 모든 플레이(숫자입력 및 처리 결과)를 저장
     
     init() {
         self.isCorrectAnswer = false

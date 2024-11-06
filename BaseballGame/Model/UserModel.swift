@@ -7,9 +7,10 @@
 
 
 /// 사용자의 게임 기록을 저장하고 관리하는 유저 모델
+/// 추후 사용자를 변경하는 기능 추가 혹은 종료 후 입력하는 이름의 디폴트값을 넣을 경우를 대비해 name 프로퍼티를 할당함
 class User {
     var name: String
-    var gameHistories: [ NewGame ]
+    var gameHistories: [ NewGame ] // 게임 기록 자체를 저장
     
     init(){
         self.name = "Player"

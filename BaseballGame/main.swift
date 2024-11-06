@@ -3,7 +3,7 @@
 //  BaseballGame
 //
 
-
+/// 야구 게임 앱 인스턴스 생성 후 앱 실행
 let baseballGame = BaseballGame()
 baseballGame.start()
 
