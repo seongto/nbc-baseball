@@ -7,7 +7,7 @@
 
 
 /// 사용자의 게임 기록을 저장하고 관리하는 유저 모델
-class User {
+private class PrivateUser {
     var name: String
     var gameHistory: [Int]
     
@@ -33,7 +33,7 @@ class User {
 
 
 // 메뉴와 기록 보기 등의 기능이 생기며 각 게임을 별도의 클래스로 구분한 모델
-class NewGame {
+private class PrivateNewGame {
     var answer: [String]
     var isCorrectAnswer: Bool
     
@@ -78,7 +78,7 @@ class NewGame {
         }
         
         // 3. 사용자의 입력값을 체크하는 함수 호출하여, 잘못된 입력 시 이번 플레이를 종료.
-        guard checkUserPlayInput(input: userInput) else {
+        guard privateCheckUserPlayInput(input: userInput) else {
             return
         }
         
@@ -115,18 +115,18 @@ class NewGame {
 class BaseballGameLv4 {
     var answer: [String]
     var isCorrectAnswer: Bool
-    var user: User
+    private var user: PrivateUser
     
     init() {
         self.answer = []
         self.isCorrectAnswer = false
-        self.user = User()
+        self.user = PrivateUser()
     }
     
     /// 앱을 시작하는 메소드.
     func start() {
         // 앱 실행 여부를 통해, 각 게임 종료 후 앱을 종료하기 이전까지 반복하여 플레이를 가능하도록 함.
-        var isRunning: Bool = true
+        let isRunning: Bool = true
         print("환영합니다!")
         
         while isRunning {
@@ -157,7 +157,7 @@ class BaseballGameLv4 {
     
     /// 게임을 시작하는 메소드. 게임이 진행되는 동안 반복적으로 사용자의 입력과 처리를 수행한다.
     func startNewGame() {
-        let currentGame: NewGame = .init()
+        let currentGame: PrivateNewGame = .init()
         currentGame.answer = currentGame.makeAnswer()
                 
         print("\n게임을 시작합니다. \(currentGame.answer)\n")
@@ -174,7 +174,7 @@ class BaseballGameLv4 {
 /// 숫자가 아닌 문자를 입력 혹은 3자리가 아닌 숫자를 입력했을 경우 false 반환.
 /// - Parameter input: 사용자로부터 입력받은 입력값
 /// - Returns: 잘못된 값을 입력받았을 경우 false 반환
-func checkUserPlayInput(input:String) -> Bool {
+private func privateCheckUserPlayInput(input:String) -> Bool {
     
     // 숫자가 아닌 문자 여부 확인
     guard Int(input) != nil else {
