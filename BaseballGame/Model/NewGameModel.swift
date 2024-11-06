@@ -59,6 +59,12 @@ class NewGame {
             return
         }
         
+        // ** 코드 검증을 위한 답안 출력용 키워드
+        if userInput == "answer" {
+            print("\(answer)")
+            return
+        }
+        
         // 3. 사용자의 입력값을 체크하는 함수 호출하여, 잘못된 입력 시 이번 플레이를 종료.
         guard checkUserPlayInput(input: userInput) else {
             return

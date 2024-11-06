@@ -57,7 +57,7 @@ class BaseballGame: FinalAppProtocol {
         let currentGame: NewGame = .init()
         currentGame.answer = currentGame.makeAnswer()
                 
-        print("\n게임을 시작합니다. \(currentGame.answer)\n")
+        print("\n게임을 시작합니다.\n")
         
         // 정답을 맞출 때까지 플레이(숫자입력후 검증)를 반복.
         while currentGame.isCorrectAnswer == false {
