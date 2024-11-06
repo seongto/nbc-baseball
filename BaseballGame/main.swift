@@ -21,5 +21,9 @@ print("[System Message] : App start!")
 //gameLv3.start()
 
 /// level 4 game 실행
-let gameLv4 = BaseballGameLv4()
-gameLv4.start()
+//let gameLv4 = BaseballGameLv4()
+//gameLv4.start()
+
+/// level 5 game 실행
+let gameLv5 = BaseballGameLv5()
+gameLv5.start()
