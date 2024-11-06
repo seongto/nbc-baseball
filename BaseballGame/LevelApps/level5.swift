@@ -1,8 +1,9 @@
 //
-//  level6.swift
+//  level5.swift
 //  BaseballGame
 //  -
 //
+
 
 /// 사용자의 게임 기록을 저장하고 관리하는 유저 모델
 private class PrivateUser {
@@ -142,19 +143,21 @@ private class PrivateNewGame {
 }
 
 // 야구 게임이라는 앱을 총괄하는 클래스
-class BaseballGameLv6 {
+class BaseballGameLv5: GameAppProtocol {
+    var answer: [String]
+    var isCorrectAnswer: Bool
     private var user: PrivateUser
-    var isRunning: Bool
     
     init() {
+        self.answer = []
+        self.isCorrectAnswer = false
         self.user = PrivateUser()
-        self.isRunning = true
     }
     
     /// 앱을 시작하는 메소드.
     func start() {
         // 앱 실행 여부를 통해, 각 게임 종료 후 앱을 종료하기 이전까지 반복하여 플레이를 가능하도록 함.
-        print("[System Message] : App start!\n")
+        let isRunning: Bool = true
         print("환영합니다!")
         
         while isRunning {
@@ -174,16 +177,13 @@ class BaseballGameLv6 {
                 startNewGame()
             case "2":
                 showGameHistory()
-            case "3":
-                isRunning = false
-                print("[System Message] : 숫자 야구 게임앱을 종료합니다.")
             default:
                 print("[Error] : 잘못된 입력을 수행하였습니다.")
                 print("""
                       현재 사용 가능한 항목은 다음과 같습니다.
                       - 1: 게임 시작하기
                       - 2: 게임 기록 보기
-                      - 3: 종료하기
+                      
                       """)
             }
         }
