@@ -112,7 +112,7 @@ private class PrivateNewGame {
 }
 
 // 야구 게임이라는 앱을 총괄하는 클래스
-class BaseballGameLv4 {
+class BaseballGameLv4: GameAppProtocol {
     var answer: [String]
     var isCorrectAnswer: Bool
     private var user: PrivateUser
