@@ -8,7 +8,7 @@
 // 야구 게임이라는 앱을 총괄하는 클래스
 class BaseballGame: FinalAppProtocol {
     var user: User
-    var isRunning: Bool
+    var isRunning: Bool // 앱이 가동 중임을 표시. false일 경우 앱의 종료를 의미한다.
     
     init() {
         self.user = User()
@@ -57,7 +57,9 @@ class BaseballGame: FinalAppProtocol {
         let currentGame: NewGame = .init()
         currentGame.answer = currentGame.makeAnswer()
                 
-        print("\n게임을 시작합니다. \(currentGame.answer)\n")
+        print("\n게임을 시작합니다.\n")
+        
+        // 정답을 맞출 때까지 플레이(숫자입력후 검증)를 반복.
         while currentGame.isCorrectAnswer == false {
             currentGame.playBall()
         }
@@ -65,6 +67,8 @@ class BaseballGame: FinalAppProtocol {
         print(">> 승리의 전당에 기록할 3글자를 입력해주세요. 잘못된 입력 시 YOU 로 기록됩니다.")
         
         var isCorrectName: Bool = false
+        
+        // 게임 승리 후 이름을 기록하는 기능을 담당. 특별한 에러처리를 통해 재입력을 요구하는 대신 디폴트 값을 주는 방향으로 진행.
         while !isCorrectName {
             let recordInput: String? = readLine()
             
@@ -74,12 +78,7 @@ class BaseballGame: FinalAppProtocol {
                 continue
             }
             
-            print("--------------------")
-            print(recordInput)
-            print(recordInput.count)
-            print(type(of: recordInput))
-            print("--------------------")
-            
+            // 형식에 안 맞는 모든 경우에 이름을 동일하게 저장시킨다.
             guard recordInput.count == 3 else {
                 print("YOU 로 저장되었습니다.")
                 currentGame.recordName = "YOU"
@@ -91,7 +90,7 @@ class BaseballGame: FinalAppProtocol {
             print("\(recordInput) 이름으로 저장되었습니다.")
         }
     
-        
+        // 이번 게임 데이터를 사용자에 저장한다.
         user.gameHistories.append(currentGame)
         print("... 게임 결과가 저장되었습니다.")
         print("[System Message] 게임을 종료합니다. \n")
@@ -101,6 +100,8 @@ class BaseballGame: FinalAppProtocol {
     func showGameHistory() {
         var isShowing: Bool = true // false로 전환시 기록보기를 종료하고 초기 화면으로 되돌아가게 처리.
         
+        // 게임 기록 보기 상태를 유지시키기 위해 while을 통해 사용자 입력을 반복적으로 받게 설계함.
+        // 게임 기록 보기에서 오류를 일으키거나 세부 내용 확인 후 돌아오기 등, 돌아오는 기점을 만들기 위함.
         while isShowing {
             user.printHistories()
             if user.gameHistories.isEmpty {
@@ -111,6 +112,7 @@ class BaseballGame: FinalAppProtocol {
             print("0. 초기화면으로 돌아가기\n")
             print(">> 상세한 기록 확인을 원하는 게임의 번호를 입력해주세요. 0 입력 시 초기화면으로 돌아갑니다.")
             
+            // 게임 기록 보기 내에서 각 게임의 기록을 선택하거나 초기 화면으로 돌아갈 수 있는 입력을 받는 곳.
             let menuInput: String? = readLine()
             
             // 입력 없는 경우를 방어. 기록 선택으로 돌아가기.
@@ -137,7 +139,9 @@ class BaseballGame: FinalAppProtocol {
                 if record.playHistories.count < 4 {
                     print("GREAT!!!")
                 }
+                
                 print("\n>> 엔터를 누르시면 이전 화면으로 돌아갑니다.")
+                // 세부 정보를 출력 후 바로 메뉴 화면으로 돌아가기 전에 여유를 두고 기록을 볼 수 있도록 무의미한 엔터 확인 과정을 넣어주었다.
                 let _ : String? = readLine()
             }
         }
