@@ -8,9 +8,6 @@ let baseballGame = BaseballGame()
 baseballGame.start()
 
 
-
-
-
 // 아래 코드는 레벨별 앱 실행을 위해 사용하였던 레거시 코드
 
 /// level 1 game 실행
