@@ -46,7 +46,8 @@ class NewGame {
         }
         
         // 1. 숫자를 입력해달라고 요청
-        print("\n>> [\(playHistories.count + 1)회차 시도] 3자리의 숫자를 던져주세요.")
+        print("\n[\(playHistories.count + 1)회차 시도] 3자리의 숫자를 던져주세요.")
+        print(">> ", terminator: "")
         
         let userInput: String? = readLine()
         var strike: Int = 0
